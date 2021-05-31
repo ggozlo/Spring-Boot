@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 th:text="${member.name}+'님 안녕하세요!'">홍길동님 안녕하세요!</h1>
+    <h1>전화: <th:block th:text="${member.tel}" /></h1>
+    <h2>
+        국어:<th:block th:text="${member.kor}" /><br/>
+        영어:<th:block th:text="${member.eng}" /><br/>
+        수학:<th:block th:text="${member.mat}" /><br/>
+        총점:<th:block th:text="${member.getTot()}" />
+
+    </h2>
+
+
+</body>
+</html>

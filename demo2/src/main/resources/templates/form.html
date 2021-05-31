@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <form action="hello" method="post" th:object="${member}">
+    이름<input type="text" th:field="*{name}" ><br/>
+    번호<input type="text" th:field="*{tel}" ><br/>
+  국어<input type="text" th:field="*{kor}" ><br/>
+  영어<input type="text" th:field="*{eng}" ><br/>
+  수학<input type="text" th:field="*{mat}" ><br/>
+
+    <input type="submit" value="전송">
+
+  </form>
+</body>
+</html>
