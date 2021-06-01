@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="container-sm">
+
+<head >
+  <th:block th:replace="fragments/fragments :: head" />
+  <title>글쓰기</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+<!--  nav  -->
+<nav th:replace="fragments/fragments :: nav" />
+
+<!--  section  -->
+<form th:object="${post}">
+  <label th:for="title">제목</label>
+  <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요" readonly="readonly">
+
+  <label th:for="content">본문</label>
+  <textarea cols="10" rows="20"  class="form-control" placeholder="본문을 입력하세요" th:field="*{content}" readonly=readonly></textarea>
+</form>
+
+<!--  footer  -->
+<footer th:replace="fragments/fragments :: footer" />
+
+</body>
+</html>

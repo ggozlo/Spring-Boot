@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head >
+        <th:block th:replace="fragments/fragments :: head" />
+        <title>어서오세요!</title>
+    </head>
+
+    <body>
+
+        <!--  nav  -->
+        <nav th:replace="fragments/fragments :: nav" />
+
+        <!--  section  -->
+        <div class="bg-dark text-white p-3">
+            <h1> <p1 th:text="${username}+'님 반갑습니다!!'">아님 말고</p1> </h1>
+        </div>
+
+        <!--  footer  -->
+        <footer th:replace="fragments/fragments :: footer" />
+
+    </body>
+</html>
