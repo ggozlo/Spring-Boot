@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" class="container-sm">
+
+<head >
+  <th:block th:replace="fragments/fragments :: head" />
+  <title>글쓰기</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+<!--  nav  -->
+<nav th:replace="fragments/fragments :: nav" />
+
+<!--  section  -->
+  <form action="/school" method="post" th:object="${school}">
+      <label th:for="title">번호</label>
+      <input type="text" th:field="*{id}" class="form-control" placeholder="번호을 입력하세요">
+      <label th:for="title">이름</label>
+      <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요">
+      <label th:for="title">전화번호</label>
+      <input type="text" th:field="*{tel}" class="form-control" placeholder="전화번호을 입력하세요">
+
+
+
+      <input type="submit" value="전송" class="btn btn-primary mb-3">
+  </form>
+
+<!--  footer  -->
+<footer th:replace="fragments/fragments :: footer" />
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 package jpa.jpabook.domain;
 
 import javax.persistence.Entity;
+import java.util.Objects;
 
 @Entity
 public class Book extends Item {
@@ -8,6 +9,8 @@ public class Book extends Item {
     private String author;
 
     private String isbn;
+
+
 
     public String getAuthor() {
         return author;
