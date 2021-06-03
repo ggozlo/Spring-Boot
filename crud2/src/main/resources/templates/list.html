@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:replace="fragments :: head" />
+    <title>입력</title>
+</head>
+<body>
+
+<header th:replace="fragments :: nav">
+
+</header>
+<div class="container-sm">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>전화번호</th>
+            <th colspan="2">비고</th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr th:each="school : ${list}">
+            <td th:text="${school.id}"></td>
+            <td th:text="${school.name}"></td>
+            <td th:text="${school.tel}"></td>
+            <td>
+
+                <a th:href="@{/school/delete/{id} (id=${school.id})}" >
+                    <button class="btn btn-primary mb-3"> 삭제</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/school/update/{id} (id=${school.id})}" >
+                    <button class="btn btn-primary mb-3"> 수정</button>
+                </a>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<footer th:replace="fragments :: footer">
+</footer>
+
+</body>
+</html>
