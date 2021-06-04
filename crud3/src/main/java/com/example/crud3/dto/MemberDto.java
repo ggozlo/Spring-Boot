@@ -1,6 +1,6 @@
 package com.example.crud3.dto;
 
-import com.example.crud3.domain.School;
+import com.example.crud3.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ import javax.validation.constraints.Positive;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SchoolDto {
+public class MemberDto {
 
     @Positive(message = "음수는 안됩니다!")
     @NotNull(message = "반드시 입력하세요!!")
@@ -24,11 +24,11 @@ public class SchoolDto {
     private String tel;
 
 
-    public static SchoolDto toDto(School school) {
-        return new SchoolDto(school.getId(), school.getName(), school.getTel());
+    public static MemberDto toDto(Member school) {
+        return new MemberDto(school.getId(), school.getName(), school.getTel());
     }
 
-    public static School toDomain(SchoolDto dto) {
-        return new School(dto.getId(), dto.getName(), dto.getTel());
+    public static Member toDomain(MemberDto dto) {
+        return new Member(dto.getId(), dto.getName(), dto.getTel());
     }
 }

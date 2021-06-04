@@ -1,6 +1,6 @@
 package com.example.crud3.controller;
 
-import com.example.crud3.dto.SchoolDto;
+import com.example.crud3.dto.MemberDto;
 import com.example.crud3.service.SchoolService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class SchoolController {
 
     @GetMapping("school")
     public String form(Model model) {
-        model.addAttribute("school", new SchoolDto());
+        model.addAttribute("school", new MemberDto());
         return "form";
     }
 
@@ -32,7 +32,7 @@ public class SchoolController {
     }
 
     @PostMapping("school")
-    public String addSchool(@ModelAttribute("school") @Valid SchoolDto schoolDto, BindingResult result, Model model) {
+    public String addSchool(@ModelAttribute("school") @Valid MemberDto schoolDto, BindingResult result, Model model) {
         if(result.hasErrors()) {
             return "form";
         }
@@ -53,7 +53,7 @@ public class SchoolController {
     }
 
     @PostMapping("school/update")
-    public String update(SchoolDto dto) {
+    public String update(MemberDto dto) {
         service.updateOne(dto);
         return "redirect:/school/list";
     }

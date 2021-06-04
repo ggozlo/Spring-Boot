@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <th:block th:replace="fragments :: head" />
+  <title>입력</title>
+  <style>
+    .fieldError {
+      border-color: #bd2130;
+    }
+  </style>
+</head>
+<body>
+
+<header th:replace="fragments :: nav">
+
+</header>
+
+<form th:action="@{/score/update}" th:method="post" th:object="${score}" class="container">
+
+  <input type="hidden" th:field="*{id}" >
+
+  <div class="form-group">
+    <label th:for="name">이름</label>
+    <input type="text" th:field="*{name}"  placeholder="이름을 입력하세요" class="form-control"
+           th:class="${#fields.hasErrors('name')}? 'form-control fieldError':'form-control'" >
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text text-danger">오류발생</p>
+  </div>
+
+  <div class="form-group">
+    <label th:for="num">반</label>
+    <input type="text" th:field="*{num}"  placeholder="반을 입력하세요" class="form-control"
+           th:class="${#fields.hasErrors('num')}? 'form-control fieldError' : 'form-control'">
+    <p th:if="${#fields.hasErrors('num')}" th:errors="*{num}" class="form-text text-danger">오류발생</p>
+  </div>
+
+  <div class="form-group">
+    <label th:for="kor">국어</label>
+    <input type="text" th:field="*{kor}" class="form-control" placeholder="국어성적을 입력하세요">
+  </div>
+
+  <div class="form-group">
+    <label th:for="eng">영어</label>
+    <input type="text" th:field="*{eng}" class="form-control" placeholder="영어성적을 입력하세요">
+  </div>
+
+  <div class="form-group">
+    <label th:for="mat">수학</label>
+    <input type="text" th:field="*{mat}" class="form-control" placeholder="수학성적을 입력하세요">
+  </div>
+
+  <button type="submit" class="btn btn-primary">저장</button>
+
+</form>
+
+
+
+<footer th:replace="fragments :: footer">
+</footer>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 package com.example.crud3.service;
 
-import com.example.crud3.domain.School;
-import com.example.crud3.dto.SchoolDto;
+import com.example.crud3.domain.Member;
+import com.example.crud3.dto.MemberDto;
 import com.example.crud3.repository.SchoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,12 +16,12 @@ public class SchoolService {
     private final SchoolRepository repository;
 
     @Transactional
-    public void addOne(SchoolDto dto) {
-        repository.save(SchoolDto.toDomain(dto));
+    public void addOne(MemberDto dto) {
+        repository.save(MemberDto.toDomain(dto));
     }
     @Transactional
-    public List<SchoolDto> listAll() {
-        return repository.findAll().stream().map(SchoolDto::toDto).collect(Collectors.toList());
+    public List<MemberDto> listAll() {
+        return repository.findAll().stream().map(MemberDto::toDto).collect(Collectors.toList());
     }
 
     @Transactional
@@ -29,21 +29,21 @@ public class SchoolService {
         repository.deleteById(id);
     }
     @Transactional
-    public SchoolDto findOne(Long id) {
-        return SchoolDto.toDto(repository.findById(id).get());
+    public MemberDto findOne(Long id) {
+        return MemberDto.toDto(repository.findById(id).get());
     }
 
 
     @Transactional
-    public void updateOne(SchoolDto dto) {
-        School targetSchool = repository.findById(dto.getId()).get();
+    public void updateOne(MemberDto dto) {
+        Member targetSchool = repository.findById(dto.getId()).get();
         targetSchool.setName(dto.getName());
         targetSchool.setTel(dto.getTel());
         repository.save(targetSchool);
     }
 
     @Transactional
-    public List<SchoolDto> nameSearch(String name) {
-        return repository.findByNameContaining(name).stream().map(SchoolDto :: toDto).collect(Collectors.toList());
+    public List<MemberDto> nameSearch(String name) {
+        return repository.findByNameContaining(name).stream().map(MemberDto:: toDto).collect(Collectors.toList());
     }
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <th:block th:replace="fragments :: head" />
+    <title>입력</title>
+</head>
+<body>
+
+<header th:replace="fragments :: nav">
+
+</header>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>이름</th>
+            <th>반</th>
+            <th>국어</th>
+            <th>영어</th>
+            <th>수학</th>
+            <th>총점</th>
+            <th>평균</th>
+            <th>등급</th>
+            <th>학년석차</th>
+            <th colspan="2">비고</th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr th:each="score : ${list}">
+            <td th:text="${score.name}"></td>
+            <td th:text="${score.num}"></td>
+            <td th:text="${score.kor}"></td>
+            <td th:text="${score.eng}"></td>
+            <td th:text="${score.mat}"></td>
+            <td th:text="${score.getTotal()}"></td>
+            <td th:text="${#numbers.formatDecimal(score.getAvg(),0,1)}"></td>
+            <td th:text="${score.getGrade()}"></td>
+            <td th:text="${score.getRank()}"></td>
+            <td>
+
+                <a th:href="@{/score/delete/{id} (id=${score.id})}" >
+                    <button class="btn btn-primary mb-3"> 삭제</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/score/update/{id} (id=${score.id})}" >
+                    <button class="btn btn-primary mb-3"> 수정</button>
+                </a>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<footer th:replace="fragments :: footer">
+</footer>
+
+</body>
+</html>
