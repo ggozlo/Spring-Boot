@@ -16,19 +16,34 @@ public class JpaMain {
         transaction.begin();
         try {
 
+            Team team =new Team();
+            team.setName("Team1");
+            manager.persist(team);
+
+            Team team2 =new Team();
+            team2.setName("Team2");
+            manager.persist(team2);
+
             Member member = new Member();
             member.setUsername("member1");
             member.setAge(10);
-            manager.persist(member);
             member.setType(MemberType.ADMIN);
+            member.changeTeam(team);
+
+            manager.persist(member);
+
 
             Member member1 = new Member();
             member1.setUsername("member2");
+            member1.changeTeam(team);
             manager.persist(member1);
 
-            Team team =new Team();
-            member.changeTeam(team);
-            manager.persist(team);
+            Member member3 = new Member();
+            member3.setUsername("member3");
+            member3.changeTeam(team2);
+            manager.persist(member3);
+
+
 
 //            for (int i = 0; i < 10; i++) {
 //                Member member = new Member();
@@ -107,16 +122,25 @@ public class JpaMain {
 //            List<String> resultList = manager.createQuery(jpql, String.class).getResultList();
             // 변수가 정해진 값과 같다면 null을 반환시킴 (탈락시킨다)
 
-            String jpql = "select group_concat(m.username) from  Member m";
-            List<String> resultList = manager.createQuery(jpql, String.class).getResultList();
+//            String jpql = "select group_concat(m.username) from  Member m";
+//            List<String> resultList = manager.createQuery(jpql, String.class).getResultList();
             // 직접 dialect 클래스를 생성, 기존걸 상속받아 추가할수 있다.
             // 그 클래스를 dialect 옵션으로 지정해주면 사용가능
             // 기본 함수들은 기본 함수다 size 정도가 연관관계 매핑에서 fk수를 세어준다
             // 기능은 이름 작명을 따라가는듯
-            for (String s : resultList) {
-                System.out.println("s = " + s);
-            }
 
+            // 페치조인은 가져올때 연관관계 테이블을 한 쿼리문에 묶어서 가져옴
+
+            //String query = "select m from Member m where m.team = :team";
+            // jpa는 조회시 엔티티 자체로 조회할수 있고 pk로 치환된다
+
+ //           List<Member> result = manager.createNamedQuery("Member.findByUsername", Member.class).setParameter("username", "member1").getResultList();
+            //네임드 쿼리
+
+            int count = manager.createQuery("update Member m set m.age = 10").executeUpdate();
+            // flush 자동 호출, 영속성 컨텍스틑 거치지 않기떄문에 값이 꼬일수 있으니 가장 먼저 사용후 컨텍스트 초기화 추천
+
+            System.out.println("count = " + count);
 
             transaction.commit();
         } catch (Exception e) {

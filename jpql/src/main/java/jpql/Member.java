@@ -1,8 +1,15 @@
 package jpql;
 
+import jpql.MemberType;
+import jpql.Team;
+
 import javax.persistence.*;
 
 @Entity
+@NamedQuery(
+        name = "Member.findByUsername",
+        query = "select m  from Member m where m.username = :username"
+)
 public class Member {
 
     @Id @GeneratedValue
@@ -68,6 +75,7 @@ public class Member {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", age=" + age +
+                ", type=" + type +
                 '}';
     }
 }
