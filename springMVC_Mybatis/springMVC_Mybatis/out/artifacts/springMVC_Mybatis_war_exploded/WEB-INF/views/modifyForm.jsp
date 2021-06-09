@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
   <!-- 합쳐지고 최소화된 최신 CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -13,18 +13,18 @@
   <title>Title</title>
 </head>
 <body>
-<form class="container" th:object="${member}" action="/member/update" method="post">
-
-
-    <input type="hidden" th:field="*{id}">
-
+<form class="container"  action="/member/update" method="post">
   <div class="form-group">
-    <label th:for="*{name}">이름</label>
-    <input type="text" class="form-control" th:field="*{name}" placeholder="이름를 입력하세요">
+    <label for="id">아이디</label>
+    <input type="text" class="form-control" name="id" id="id" placeholder="아이디를 입력하세요" readonly value="${member.id}">
   </div>
   <div class="form-group">
-    <label th:for="*{tel}">전화번호</label>
-    <input type="text" class="form-control" th:field="*{tel}" placeholder="전화번호를 입력하세요">
+    <label for="name">이름</label>
+    <input type="text" class="form-control" name="name" id="name" placeholder="이름를 입력하세요" value="${member.name}">
+  </div>
+  <div class="form-group">
+    <label for="tel">전화번호</label>
+    <input type="text" class="form-control" name="tel" id="tel" placeholder="전화번호를 입력하세요" value="${member.tel}">
   </div>
 
   <button type="submit" class="btn btn-default">제출</button>

@@ -6,10 +6,7 @@ import com.ggozlo.intelimvc.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -61,4 +58,14 @@ public class MemberController {
         model.addAttribute("list", members);
         return "list";
     }
+
+    @GetMapping("/member/list/api")
+    public @ResponseBody List<Member> api() {
+        List<Member> members = repository.memberList();
+        for (Member member : members) {
+            System.out.println("member = " + member);
+        }
+        return members;
+    }
+
 }
