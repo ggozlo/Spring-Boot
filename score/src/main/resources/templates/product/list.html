@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <title>입력</title>
+</head>
+<body>
+
+<div>
+    <a href="/product"> <button type="submit" class="btn btn-primary">입력</button></a>
+    <a href="/product/list"> <button type="submit" class="btn btn-primary">목록</button></a>
+    <a href="/product/summary"> <button type="submit" class="btn btn-primary">집계</button></a>
+    <form action="/product/search" method="post"  class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" name="name">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>
+<h1>목록</h1>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>물품번호</th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th>단가</th>
+            <th>매출액</th>
+            <th>매출액 순위</th>
+            <th colspan="2">비고</th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr th:each="product : ${list}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${#numbers.formatInteger(product.count,0,'COMMA')}"></td>
+            <td th:text="${#numbers.formatInteger(product.price,0,'COMMA')}"></td>
+            <td th:text="${#numbers.formatInteger(product.getProfit(), 0, 'COMMA')}"></td>
+            <td th:text="${product.rank}"></td>
+            <td>
+
+                <a th:href="@{/product/delete/{id} (id=${product.id})}" >
+                    <button class="btn btn-primary mb-3"> 삭제</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/product/update/{id} (id=${product.id})}" >
+                    <button class="btn btn-primary mb-3"> 수정</button>
+                </a>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>

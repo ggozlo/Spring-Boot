@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+  <title>입력</title>
+
+</head>
+<body>
+<div>
+  <a href="/product"> <button type="submit" class="btn btn-primary">입력</button></a>
+  <a href="/product/list"> <button type="submit" class="btn btn-primary">목록</button></a>
+  <a href="/product/summary"> <button type="submit" class="btn btn-primary">집계</button></a>
+</div>
+<h1>수정</h1>
+<form action="/product/update" method="post" th:object="${product}" class="container">
+  <input th:field="*{id}" type="hidden">
+  <div class="form-group">
+    <label th:for="name">이름</label>
+    <input type="text" th:field="*{name}"  placeholder="이름을 입력하세요" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label th:for="price">가격</label>
+    <input type="text" th:field="*{price}"  placeholder="가격을 입력하세요" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label th:for="count">수량</label>
+    <input type="text" th:field="*{count}"  placeholder="수량을입력하세요" class="form-control">
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">수정</button>
+
+</form>
+
+
+
+
+
+</body>
+</html>

@@ -20,13 +20,13 @@ public class ScoreController {
 
     @GetMapping("score")
     public String form(@ModelAttribute("score")ScoreDto dto) {
-        return "form";
+        return "score/form";
     }
 
     @PostMapping("score")
     public String score(@Valid @ModelAttribute("score")ScoreDto dto, BindingResult result) {
         if(result.hasErrors()) {
-            return "form";
+            return "score/form";
         }
         service.saveOne(dto);
         return "redirect:/score/list";
@@ -35,7 +35,7 @@ public class ScoreController {
     @GetMapping("score/list")
     public String list(Model model) {
         model.addAttribute("list", service.findAll() );
-        return "list";
+        return "score/list";
     }
 
     @GetMapping("score/delete/{id}")
@@ -47,7 +47,7 @@ public class ScoreController {
     @GetMapping("score/update/{id}")
    public String updateForm(@PathVariable("id") Long id, Model model) {
         model.addAttribute("score", service.findOne(id));
-        return "updateForm";
+        return "score/updateForm";
     }
 
     @PostMapping("score/update")
@@ -59,7 +59,7 @@ public class ScoreController {
     @PostMapping("score/search")
     public String search(String name, Model model) {
         model.addAttribute("list", service.findAllName(name));
-        return "list";
+        return "score/list";
     }
 
 
